@@ -1,0 +1,36 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - compiler: gcc
+            compiler_version: 7
+          - compiler: gcc
+            compiler_version: 8
+          - compiler: gcc
+            compiler_version: 9
+          - compiler: gcc
+            compiler_version: 10
+          - compiler: gcc
+            compiler_version: 11
+          - compiler: gcc
+            compiler_version: latest
+    compiler: ${{ matrix.compiler }}
+    gcc: ${{ matrix.compiler_version }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: c++ version
+        run: |
+          c++ --version
+      - name: Build
+        run: |
+          make all
+      - name: Test
+        run: ./exprtk_test
+
