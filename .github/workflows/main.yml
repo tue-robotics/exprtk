@@ -9,10 +9,6 @@ jobs:
       matrix:
         include:
           - compiler: gcc
-            compiler_version: 7
-          - compiler: gcc
-            compiler_version: 8
-          - compiler: gcc
             compiler_version: 9
           - compiler: gcc
             compiler_version: 10
